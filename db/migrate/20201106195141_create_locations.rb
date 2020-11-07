@@ -5,7 +5,7 @@ class CreateLocations < ActiveRecord::Migration[6.0]
       t.string :locality
       t.string :city
       t.string :zipcode
-      t.integer :restaurant_id
+      t.references :restaurant, foreign_key: true
       t.timestamps
     end
   end

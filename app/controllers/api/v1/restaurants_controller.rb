@@ -1,4 +1,4 @@
-class RestaurantsController < ApplicationController
+class Api::V1::RestaurantsController < ApplicationController
     before_action :authorized
     def index
         restaurants =  Restaurant.all
@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
 private
 
     def restaurant_params
-        params.require(:restaurant).permit(:name)
+        params.require(:restaurant).permit(:name, :address, :cuisines)
     end
 
 end
