@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
         render json: restaurant
     end
 
-    private
+private
 
     def restaurant_params
         params.require(:restaurant).permit(:name)

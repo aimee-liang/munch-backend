@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   resources :restaurants
   resources :location, only: [:index, :show]
+  resources :reviews
+  resources :reservations
 end
