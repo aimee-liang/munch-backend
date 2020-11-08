@@ -28,20 +28,30 @@ ActiveRecord::Schema.define(version: 2020_11_07_185737) do
     t.string "locality"
     t.string "city"
     t.string "zipcode"
-    t.integer "restaurant_id"
+    t.bigint "restaurant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_locations_on_restaurant_id"
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "restaurant_id"
+    t.bigint "user_id"
+    t.bigint "restaurant_id"
+    t.datetime "datetime"
+    t.integer "guests"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_reservations_on_restaurant_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
+    t.integer "zomato_id"
+    t.string "cuisines"
+    t.string "address"
+    t.string "zip"
+    t.string "photos_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,10 +59,12 @@ ActiveRecord::Schema.define(version: 2020_11_07_185737) do
   create_table "reviews", force: :cascade do |t|
     t.text "description"
     t.integer "rating"
-    t.integer "restaurant_id"
-    t.integer "user_id"
+    t.bigint "user_id"
+    t.bigint "restaurant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,4 +76,9 @@ ActiveRecord::Schema.define(version: 2020_11_07_185737) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "locations", "restaurants"
+  add_foreign_key "reservations", "restaurants"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "restaurants"
+  add_foreign_key "reviews", "users"
 end
