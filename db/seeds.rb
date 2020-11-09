@@ -11,31 +11,31 @@
 # require 'uri'
 # require 'json'
 
-#   uri = URI.parse("https://developers.zomato.com/api/v2.1/search?count=20&lat=40.705138&lon=-74.014096&radius=1000&sort=real_distance&order=asc")
-#   request = Net::HTTP::Get.new(uri)
-#   request["Accept"] = "application/json"
-#   request["User-Key"] = "7dc855cf4405df1034f62de35de0744e"
+# uri = URI.parse("https://developers.zomato.com/api/v2.1/search?count=20&lat=40.705138&lon=-74.014096&radius=1000&sort=real_distance&order=asc")
+# request = Net::HTTP::Get.new(uri)
+# request["Accept"] = "application/json"
+# request["User-Key"] = "7dc855cf4405df1034f62de35de0744e"
 
-#   req_options = {
+# req_options = {
 #     use_ssl: uri.scheme == "https",
-#   }
+# }
 
-#   response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+# response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
 #     http.request(request)
-#   end
+# end
 
-#   restaurant_object = JSON.parse(response.body)
+# restaurant_object = JSON.parse(response.body)
 
 
-#   restaurant_object["restaurants"].map do |restaurant|
+# restaurant_object["restaurants"].map do |restaurant|
 #     rst_name = restaurant["restaurant"]["name"]
 #     rst_zomato_id = restaurant["restaurant"]["id"].to_i
 #     rst_cuisines = restaurant["restaurant"]["cuisines"]
 #     rst_address = restaurant["restaurant"]["location"]["address"]
 #     rst_zip = restaurant["restaurant"]["location"]["zipcode"]
 #     rst_photos_url = restaurant["restaurant"]["photos_url"]
-#     {name: rst_name, zomato_id: rst_zomato_id, cuisines: rst_cuisines, address: rst_address, zip: rst_zip, photos_url: rst_photos_url}
-#   end
+#     {name: rst_name, zomato_id: rst_zomato_id, cuisines: rst_cuisines.split(", "), address: rst_address, zip: rst_zip, photos_url: rst_photos_url}
+# end
 
 
 Restaurant.destroy_all
@@ -60,7 +60,8 @@ restaurants = Restaurant.create([
     {:name=>"Sophie's Cuban Cuisine", :zomato_id=>16777842, :cuisines=>"Cuban", :address=>"73 New Street, New York 10004", :zip=>"10004", :photos_url=>"https://www.zomato.com/new-york-city/sophies-cuban-cuisine-lower-manhattan/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop"}, 
     {:name=>"Cucina Liberta", :zomato_id=>18078543, :cuisines=>"Italian, American, Sandwich, Deli", :address=>"17 Batter Place, New York 10006", :zip=>"10006", :photos_url=>"https://www.zomato.com/new-york-city/cucina-liberta-lower-manhattan/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop"}, 
     {:name=>"Gregorys Coffee", :zomato_id=>17763834, :cuisines=>"Cafe", :address=>"42 Broadway 10004", :zip=>"10004", :photos_url=>"https://www.zomato.com/new-york-city/gregorys-coffee-1-lower-manhattan/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop"}, 
-    {:name=>"Yip's Restaurant", :zomato_id=>16781230, :cuisines=>"Asian, Chinese", :address=>"18 Beaver Street, New York 10004", :zip=>"10004", :photos_url=>"https://www.zomato.com/new-york-city/yips-restaurant-lower-manhattan/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop"}
+    {:name=>"Yip's Restaurant", :zomato_id=>16781230, :cuisines=>"Asian, Chinese", :address=>"18 Beaver Street, New York 10004", :zip=>"10004", :photos_url=>"https://www.zomato.com/new-york-city/yips-restaurant-lower-manhattan/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop"},
+    
 ])
 
 

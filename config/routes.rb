@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       resources :location, only: [:index, :show]
       resources :reviews
       resources :reservations
-      resources :cuisine, only: [:index, :show]
     end
   end
 
