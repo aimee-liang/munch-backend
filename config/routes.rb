@@ -5,8 +5,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
-      resources :restaurants, only: [:index, :show]
-      resources :location, only: [:index, :show]
+      resources :restaurants, only: [:index, :show, :create]
       resources :reviews
       resources :reservations
     end

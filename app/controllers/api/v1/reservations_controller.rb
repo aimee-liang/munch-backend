@@ -1,5 +1,5 @@
 class Api::V1::ReservationsController < ApplicationController
-    before_action :authorized
+    #before_action :authorized
 
     def index
         reservations = Reservation.all
