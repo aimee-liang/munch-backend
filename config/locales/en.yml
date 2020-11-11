@@ -30,4 +30,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      reservation:
+        datetime: "Reservation"
+    errors:
+      models:
+        Reservation:
+          attributes:
+            datetime:
+              taken: " already made!"
