@@ -7,7 +7,7 @@ class Api::V1::ReviewsController < ApplicationController
   end
   
   def show
-      review = Review.create(review_params)
+      review = Review.find_all_by(user_id: params[:user_id])
       render json: review
   end
 
